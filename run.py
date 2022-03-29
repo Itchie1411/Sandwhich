@@ -6,7 +6,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPTED_CREDS = CREDS.with_scopes(SCOPE)
@@ -31,17 +31,13 @@ def get_sales_data():
 
 def validate_data(values):
     try:
-       if len(values) != 6:
-           raise ValueError(
-               f'Exactly 6 values required, you provided {len(values)}'
-           )
+        [int(values) for value in values]
+        if len(values) != 6:
+            raise ValueError(
+                f'Exactly 6 values required, you provided {len(values)}'
+            )
     except ValueError as e:
         print(f'invalid data {e}, please try again')
-
-
-
-
-
 
 
 get_sales_data()
